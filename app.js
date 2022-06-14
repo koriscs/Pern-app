@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const pool = require('./database');
-
+const cors = require('cors');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const passport = require('passport');
@@ -15,11 +15,12 @@ const cartRouter = require('./src/routes/cartrouter');
 const orderRouter = require('./src/routes/orderrouter');
 
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.use(helmet());
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.use(session({
     secret: "some_secret",
@@ -37,12 +38,12 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(cors());
 app.get('/', (req, res) =>{
     res.render("index");
 });
 
-app.use('/users', userRouter);
+app.use('/auth', userRouter);
 app.use('/addresses', addressRouter);
 app.use('/products', productRouter);
 app.use('/cart', cartRouter);

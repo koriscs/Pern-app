@@ -9,7 +9,7 @@ const registerPage =(req, res) =>{
 }
 
 const loginPage = (req, res) =>{
-    res.status(200).send(`You are sucessfully logged in!`);
+    res.status(200).send(`You are sucessfully logged in as ${req.user.id}`);
 }
 
 const registerUser = (req, res) =>{
@@ -37,7 +37,7 @@ const registerUser = (req, res) =>{
 const logout = (req, res) => {
     req.logout(function(err) {
         if (err) { return next(err); }
-        res.status(200).send("You are logged out!");
+        res.status(200).send( "You are logged out!");
 
 });
 }

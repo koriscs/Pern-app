@@ -1,14 +1,14 @@
 const pool = require('../../database');
 const queries = require('../queries');
-const validator = require('validator');
 
 const getAllProducts = (req, res) =>{
-    if(req.user.is_admin) {
+    
+    console.log(req.user.id);
     pool.query(queries.getAllProducts, (error, results) =>{
         if (error) throw error;
         res.status(200).json(results.rows);
     })
- }
+ 
 }
 
 const getProduct = (req, res) =>{
