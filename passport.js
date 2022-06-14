@@ -8,8 +8,8 @@ require('dotenv').config();
 
 
 passport.use(new GoogleStrategy({
-  clientID: '820950006273-971dmj36smjge87me11734aqj4gde10r.apps.googleusercontent.com',
-  clientSecret: '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',
+  clientID: GOOGLE_CLIENT_ID,
+  clientSecret: GOOGLE_CLIENT_SECRET,
   callbackURL: "/auth/google/callback"
 },
 /*
